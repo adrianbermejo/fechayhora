@@ -7,9 +7,9 @@
  */
 public class fechayhora
 {
-    private DisplayDosCaracteres dia;
-    private DisplayDosCaracteres mes;
-    private DisplayDosCaracteres ano;
+    private NumberDisplay dia;
+    private NumberDisplay mes;
+    private NumberDisplay ano;
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;
@@ -17,9 +17,9 @@ public class fechayhora
     
     public fechayhora()
     {
-        dia = new DisplayDosCaracteres(31);
-        mes = new DisplayDosCaracteres(13);
-        ano = new DisplayDosCaracteres(2099);
+        dia = new NumberDisplay(31);
+        mes = new NumberDisplay(13);
+        ano = new NumberDisplay(100);
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         }
@@ -29,9 +29,37 @@ public class fechayhora
     public String getFechaYHoraa()
     {
       
-        return  dia.getTextoDelDisplay()+ "-"+ mes.getTextoDelDisplay()+ "-" 
-        + ano.getTextoDelDisplay()+ "-" + hours.getDisplayValue() + ":" + 
+        return  dia.getDisplayValue()+ "-"+ mes.getDisplayValue()+ "-" 
+        + ano.getDisplayValue()+ "-" + hours.getDisplayValue() + ":" + 
                         minutes.getDisplayValue();
     }
-   
+    /**
+     * fijar fechayhora.
+     */
+    public void fijarFechaYHora(int dias, int mess, int anos, int hora, int minutos)
+    {
+       dia.setValue(dias);
+       mes.setValue(mess);
+       ano.setValue(anos);
+       hours.setValue(hora);
+       minutes.setValue(minutos);
+    }
+    
+    
+    
+     public void avanzar(){
+       minutes.increment();
+       if (minutes. getValue() == 0){
+           hours.increment();
+           if (hours. getValue() == 0){
+               dia.increment();
+               if (dia. getValue() == 1){
+                   mes.increment();
+                   if (mes. getValue() == 1){
+                       ano.increment();
+                   }
+               }
+           }
+       }
+    }
 }
